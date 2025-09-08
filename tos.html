@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tomevite — Terms of Service</title>
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">@Tomevite</div>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <section class="card" style="max-width:700px; margin-inline:auto;">
+          <h3>Terms of Service <span class="badge">TOS</span></h3>
+          <div class="tos-content" style="max-height:400px; overflow-y:auto; margin-bottom:20px;">
+            <p>No refunds. I am not responsible for any purchases made without knowledge.</p>
+            <p>All sales are final. By using this website and purchasing items, you agree to these terms.</p>
+            <p>The website owner is not liable for any disputes raised through Stripe or other payment platforms.</p>
+            <p>Use at your own risk. All content is provided as-is. Legal obligations apply to the fullest extent permitted by law.</p>
+            <p>Additional terms may apply per product. Please read carefully before making any purchase.</p>
+          </div>
+
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <label>
+              <input type="checkbox" id="confirm-tos">
+              I have read and agree to the TOS
+            </label>
+            <button class="btn primary" id="proceed-btn" disabled>Proceed to Purchase</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="y"></span> Jesus Moreno • © Tomevite • All Rights Reserved
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const checkbox = document.getElementById('confirm-tos');
+    const btn = document.getElementById('proceed-btn');
+
+    checkbox.addEventListener('change', ()=>{
+      btn.disabled = !checkbox.checked;
+    });
+
+    btn.addEventListener('click', ()=>{
+      // Replace this with your Stripe URL
+      window.location.href = "https://buy.stripe.com/your-link";
+    });
+  </script>
+</body>
+</html>
