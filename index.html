@@ -13,8 +13,6 @@
     <canvas id="space"></canvas>
     <div class="glow"></div>
     <div class="glow g2"></div>
-    <!-- subtle rainbow overlay -->
-    <div class="rainbow-overlay" aria-hidden="true"></div>
   </div>
 
   <div class="shell" id="parallaxRoot">
@@ -25,18 +23,16 @@
           <span class="brand-badge"></span>
           Tomevite.com
         </div>
-
         <nav class="nav" data-depth="5">
           <a href="#home">Home</a>
           <a href="https://tomevite.com/purchase" target="_blank" rel="noopener">Purchase</a>
           <a href="https://discord.gg/tomevite" target="_blank" rel="noopener">Discord</a>
         </nav>
-
         <div class="hamburger">
           <button class="btn-burger" id="burger" aria-label="Open menu" aria-expanded="false">
             <span class="lines"></span>
           </button>
-          <div class="dropdown" id="dropdown" role="menu">
+          <div class="dropdown" id="dropdown">
             <a href="#home">Home</a>
             <a href="https://tomevite.com/purchase" target="_blank" rel="noopener">Purchase</a>
             <a href="https://discord.gg/tomevite" target="_blank" rel="noopener">Discord</a>
@@ -50,7 +46,7 @@
       <div class="wrap">
         <!-- HERO -->
         <section id="home" class="card hero" data-magnetic data-depth="3">
-          <h1>Hey, I’m <span class="accent">Tomevite</span> 👋</h1>
+          <h1>Hey, I’m <span style="color:var(--brand)">Tomevite</span> 👋</h1>
           <p class="muted">Content creator • Dahood Skins • Roblox Limiteds </p>
           <div class="row" style="margin-top:8px">
             <a class="btn primary" href="https://guns.lol/tomevite" target="_blank" rel="noopener">All Socials</a>
@@ -58,61 +54,37 @@
           </div>
         </section>
 
-        <div class="grid" style="gap:20px;">
-          <!-- FEATURED VIDEO (large) -->
-          <section class="card" id="latest-video-card" data-tilt data-magnetic data-depth="6" style="grid-column: span 8;">
-            <h3>Featured Video <span class="badge">Custom</span></h3>
+        <!-- MINI VIDEO PLAYER -->
+        <section class="card" data-tilt data-magnetic data-depth="6">
+          <h3>Featured Video <span class="badge">Media</span></h3>
+          <div class="video">
+            <video id="miniVideo" src="media/your-video.mp4" autoplay muted></video>
+          </div>
+          <div class="row" style="margin-top:8px; justify-content:center;">
+            <button class="btn" id="playPause">Pause</button>
+            <button class="btn" id="rewind10">« 10s</button>
+            <button class="btn" id="forward10">10s »</button>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1">
+          </div>
+        </section>
 
-            <div class="video-player">
-              <video id="myVideo" width="560" height="315" muted playsinline preload="metadata">
-                <source src="videos/sample.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
-              </video>
-
-              <div class="controls">
-                <button id="playPause" aria-label="Play">▶️</button>
-                <button id="rewind" aria-label="Rewind 10 seconds">⏪ 10s</button>
-                <button id="forward" aria-label="Forward 10 seconds">⏩ 10s</button>
-
-                <div class="volume-wrap">
-                  <label for="volume" class="sr-only">Volume</label>
-                  <input id="volume" type="range" min="0" max="1" step="0.05" value="1">
-                </div>
-
-                <div class="time-display" aria-hidden="true">
-                  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                </div>
-              </div>
-
-              <div class="progress" id="progress" aria-hidden="true">
-                <div class="progress-filled" id="progressFilled"></div>
-              </div>
-            </div>
-          </section>
-
-          <!-- TOS card + mini info (right column) -->
-          <aside class="card" style="grid-column: span 4;" data-tilt data-magnetic data-depth="8">
-            <h3>Account & Legal <span class="badge">Info</span></h3>
-
-            <p class="muted">Important policies and quick links for buyers.</p>
-
-            <div class="tos-card">
-              <div class="tos-preview">
-                <strong>Show TOS</strong>
-                <p class="muted small">Click to view the full Terms of Service and purchase policy.</p>
-                <button id="openTos" class="btn" style="margin-top:8px">Open TOS</button>
-              </div>
-            </div>
-
-            <hr style="margin:14px 0; opacity:.06">
-
-            <p class="muted small">Selling via Stripe. Please follow site instructions when buying.</p>
-            <a class="btn" href="https://guns.lol/tomevite" target="_blank" rel="noopener" style="margin-top:12px; display:inline-block">View Profile</a>
-          </aside>
+        <!-- TOGGLE TOS -->
+        <div style="text-align:center; margin:20px 0;">
+          <button class="btn primary" id="toggle-tos">Open TOS</button>
         </div>
+        <section class="card" id="tos-card" data-tilt data-magnetic data-depth="8" style="display:none;">
+          <h3>Terms of Service <span class="badge">TOS</span></h3>
+          <div class="tos-content" style="max-height:400px; overflow-y:auto;">
+            <p>No refunds. I am not responsible for any purchases made without knowledge.</p>
+            <p>All sales are final. By using this website and purchasing items, you agree to these terms.</p>
+            <p>The website owner is not liable for any disputes raised through Stripe or other payment platforms.</p>
+            <p>Use at your own risk. All content is provided as-is. Legal obligations apply to the fullest extent permitted by law.</p>
+            <p>Additional terms may apply per product. Please read carefully before making any purchase.</p>
+          </div>
+        </section>
 
         <!-- BIO -->
-        <section class="card" data-tilt data-magnetic data-depth="8" style="margin-top:18px">
+        <section class="card" data-tilt data-magnetic data-depth="8">
           <h3>About <span class="badge">Bio</span></h3>
           <p class="muted">
             I’m Tomevite. I sell Dahood skins and Roblox limiteds. PLEASE BUY FROM ME! :D
@@ -126,51 +98,7 @@
     </footer>
   </div>
 
-  <!-- TOS Modal -->
-  <div class="modal-backdrop" id="tosModal" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tosTitle">
-      <div class="modal-header">
-        <h2 id="tosTitle">Terms of Service & Purchase Policy</h2>
-        <button id="closeTos" class="btn" aria-label="Close TOS">Close</button>
-      </div>
-      <div class="modal-body">
-        <p><em><strong>Legal disclaimer:</strong> I am not a lawyer. The following is a sample Terms of Service and purchase policy. You should have these reviewed and adapted by a qualified attorney for your jurisdiction and business. This is not legal advice.</em></p>
-
-        <h4>1. Acceptance</h4>
-        <p>By purchasing products through this website you agree to these Terms of Service and the policies described below.</p>
-
-        <h4>2. Purchases, Payments & Delivery</h4>
-        <ul>
-          <li>All sales are final unless otherwise stated. We do not offer refunds except in exceptional circumstances decided at our sole discretion.</li>
-          <li>Payments are processed by Stripe (or other listed payment providers). You agree that we are not responsible for payment processing delays or errors caused by third parties.</li>
-        </ul>
-
-        <h4>3. Disputes & Chargebacks</h4>
-        <ul>
-          <li>By completing a purchase you agree to first contact us and attempt to resolve any issue directly before filing disputes with your payment provider.</li>
-          <li>We reserve the right to provide transaction records, delivery proofs, and other documentation to payment processors when disputing a chargeback.</li>
-        </ul>
-
-        <h4>4. Responsibility</h4>
-        <ul>
-          <li>We are not responsible for purchases made without the account holder’s knowledge if the purchaser’s payment credentials were used.</li>
-          <li>We provide products "as is" and are not liable for indirect or consequential damages related to purchases.</li>
-        </ul>
-
-        <h4>5. No Warranty</h4>
-        <p>We make no warranties regarding merchantability or fitness for a particular purpose. Use of purchased items is at your own risk.</p>
-
-        <h4>6. Changes</h4>
-        <p>We may modify these terms at any time; changes take effect when posted. It is the buyer’s responsibility to check terms prior to purchasing.</p>
-
-        <h4>7. Governing Law</h4>
-        <p>These terms shall be governed by applicable law in the jurisdiction listed on our contact page.</p>
-
-        <p class="muted small"><strong>Reminder:</strong> This is a sample TOS. For enforceable, jurisdiction-specific terms and best practices for reducing disputes and complying with applicable consumer protection laws you must consult a licensed attorney.</p>
-      </div>
-    </div>
-  </div>
-
   <script src="js/main.js"></script>
+  <script src="js/video.js"></script>
 </body>
 </html>
